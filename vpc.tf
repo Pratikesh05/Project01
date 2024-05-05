@@ -71,9 +71,7 @@ resource "aws_subnet" "private_subnet" {
 resource "aws_route_table" "private_route_table" {
     vpc_id = aws_vpc.vpc.id
 
-    tags = {
-        Name = "private_route"
-    }
+
 }
 
 resource "aws_route" "private_route" {
@@ -92,17 +90,10 @@ resource "aws_subnet" "private_subnet1" {
     cidr_block        = "10.0.2.0/24"
     availability_zone = "eu-north-1c"
 
-    tags = {
-        Name = "private-subnet1"
-    }
 }
 
 resource "aws_route_table" "private_route_table1" {
-    vpc_id = aws_vpc.vpc.id
-
-    tags = {
-        Name = "private_route1"
-    }
+    vpc_id = aws_vpc.vpc_security_group_ids
 }
 
 resource "aws_route_table_association" "private_subnet_association1" {
