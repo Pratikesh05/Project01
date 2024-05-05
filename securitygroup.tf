@@ -1,10 +1,10 @@
 #security group
 
 resource "aws_security_group" "sg" {
-    
   vpc_id      = aws_vpc.vpc.id
   name        = "security-group"
-  description = "Allow SSH and http and https"
+  description = "Allow SSH, HTTP, HTTPS, and MySQL"
+
   ingress {
     from_port   = 22
     to_port     = 22
@@ -12,54 +12,50 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_block = ["0.0.0.0/0"]
-  }
- 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_block = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
+
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_block = ["0.0.0.0/0"]
-  }
- 
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tCP"
-    cidr_block = ["0.0.0.0/0"]
-  }
-  
-
-     tags {
-       Name = "sg"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
-
-  #rds_security group
-
-resource "aws_security_group" "db" {
-  name   = "db-secgroup"
-  vpc_id = aws_vpc.vpc.id
-
-  # ssh access from anywhere
   ingress {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "sg"
+  }
+}
+
+resource "aws_security_group" "db" {
+  name   = "db-secgroup"
+  vpc_id = aws_vpc.vpc.id
+  
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0

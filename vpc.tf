@@ -1,4 +1,3 @@
-
 resource "aws_vpc" "vpc" {
     cidr_block           = "10.0.0.0/16"
     enable_dns_support   = true
@@ -19,7 +18,7 @@ resource "aws_internet_gateway" "igw" {
 
 resource "aws_eip" "nat_eip" {
     vpc    = true
-    region = "eu-north-1a"
+    region = "us-east-1"
 }
 
 resource "aws_nat_gateway" "nat" {
@@ -109,4 +108,3 @@ resource "aws_route_table" "private_route_table1" {
 resource "aws_route_table_association" "private_subnet_association1" {
     subnet_id      = aws_subnet.private_subnet1.id
     route_table_id = aws_route_table.private_route_table1.id
-}
