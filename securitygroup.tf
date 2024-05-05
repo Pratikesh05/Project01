@@ -42,13 +42,13 @@ resource "aws_security_group" "sg" {
   }
   
 
-  tags {
-    Name = "sg"
+     tags {
+       Name = "sg"
   }
 
 
   #rds_security group
-  
+
 resource "aws_security_group" "db" {
   name   = "db-secgroup"
   vpc_id = aws_vpc.vpc.id
