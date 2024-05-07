@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "dbsubnet" {
-  name       = "main"
-  subnet_ids = ["${aws_subnet.private_subnet1.id}", "${aws_subnet.private_subnet.id}"]
+  name        = "main"
+  subnet_ids  = [aws_subnet.private_subnet1.id, aws_subnet.private_subnet.id]  
 
   tags = {
     Name = "My DB subnet group"
@@ -24,4 +24,17 @@ resource "aws_db_instance" "db" {
   }
 
   depends_on = [aws_security_group.db]
+}
+
+
+provider "aws" {
+  region  = "eu-north-1b"
+  profile = "default"
+}
+
+
+provider "aws" {
+  region     = "eu-north-1b"
+  access_key = "your-access-key"
+  secret_key = "your-secret-key"
 }

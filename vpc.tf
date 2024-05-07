@@ -18,7 +18,7 @@ resource "aws_internet_gateway" "igw" {
 
 resource "aws_eip" "nat_eip" {
     vpc    = true
-    region = "us-east-1"
+     availability_zone = "eu-north-1a"
 }
 
 resource "aws_nat_gateway" "nat" {
@@ -32,7 +32,7 @@ resource "aws_subnet" "public_subnet" {
     vpc_id                  = aws_vpc.vpc.id
     cidr_block              = "10.0.0.0/24"
     map_public_ip_on_launch = true
-    availability_zone       = "us-east-1a"
+    availability_zone       = "eu-north-1b"
 
     tags = {
         Name = "public-subnet"
@@ -61,7 +61,7 @@ resource "aws_route_table_association" "public_subnet_association" {
 resource "aws_subnet" "private_subnet" {
     vpc_id            = aws_vpc.vpc.id
     cidr_block        = "10.0.1.0/24"
-    availability_zone = "us-east-1b"
+    availability_zone = "eu-north-1c"
 
     tags = {
         Name = "private-subnet"
@@ -90,7 +90,7 @@ resource "aws_route_table_association" "private_subnet_association" {
 resource "aws_subnet" "private_subnet1" {
     vpc_id            = aws_vpc.vpc.id
     cidr_block        = "10.0.2.0/24"
-    availability_zone = "us-east-1c"
+    availability_zone = "eu-north-1a"
 
     tags = {
         Name = "private-subnet1"
