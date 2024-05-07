@@ -1,5 +1,3 @@
-
-
 resource "aws_db_subnet_group" "dbsubnet" {
   name       = "main"
   subnet_ids = ["${aws_subnet.private_subnet1.id}", "${aws_subnet.private_subnet.id}"]
@@ -15,7 +13,7 @@ resource "aws_db_instance" "db" {
   allocated_storage      = 20
   engine                 = "mysql"
   name                   = "database"
-  password               = "12345"
+  password               = "pratik@123"
   username               = "pratikesh"
   engine_version         = "5.6.40"
   skip_final_snapshot    = true
