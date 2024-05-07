@@ -27,3 +27,14 @@ resource "aws_db_instance" "db" {
 }
 
 
+provider "aws" {
+  region  = "eu-north-1b"
+  profile = "default"
+}
+
+
+provider "aws" {
+  region     = "eu-north-1b"
+  access_key = "your-access-key"
+  secret_key = "your-secret-key"
+}
