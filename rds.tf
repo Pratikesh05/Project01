@@ -1,9 +1,10 @@
-
-
 resource "aws_db_subnet_group" "dbsubnet" {
   name       = "main"
   subnet_ids = ["${aws_subnet.private_subnet1.id}", "${aws_subnet.private_subnet.id}"]
 
+  tags = {
+    Name = "My DB subnet group"
+  }
 }
 
 resource "aws_db_instance" "db" {
@@ -11,8 +12,8 @@ resource "aws_db_instance" "db" {
   instance_class         = "db.t2.micro"
   allocated_storage      = 20
   engine                 = "mysql"
-  Name                   = "database"
-  password               = "12345"
+  name                   = "database"
+  password               = "pratik@123"
   username               = "pratikesh"
   engine_version         = "5.6.40"
   skip_final_snapshot    = true
